@@ -1,34 +1,44 @@
-Newton-s-Method
-===============
+MathTag
+===
 
-A interactive site that can visualize the newton's method
+MathTag is a easy-to-use library that delivers the **mathbox** as a angular directtive.
 
-Interesting Demos
+Installation
 ---
 
-Since the Newton's Method can be konvergent, divergent or oszilerating there are demos to show that.
+Just the `MathTag.js` file in your html. 
 
-###Konvergent
+> **Note** The file includes `mathbox.js`, `mathjs`, `nerdamer` and the library itself
 
-`f(x) = sin(x)` `x_0 = 1.1`
+```html
+<script src="path/to/MathTag.js"></script>
+```
 
-`f(x) = x^3+e^x` `x_0 = 1.4`
+Usage
+---
 
-###Divergent
+The matchbox element creates a new instance of mathbox.
+```html
+<math-box>
+    <curve color="ff00">x^2</curve>
+    <curve ng-model="f" ng-color="c" domain="[-10, 10]"></curve>
+	<vector>[[1, 2], [2, 4]]</vector>
+</math-box>
+```
+***Important*** Use e.g. `color="#ff0000"` for static value and **`ng-color`** for data bound properties. Like:
+```html
+...
+<curve ng-color="myColor">x^2</curve>
+...
+<script>
+MainCtrl($scope){
+	$scope.myColor = 'ff0000';
+	$scope.changeColor = function(){
+		$scope.myColor = '00ff00'; 
+		//the color of the graph will automatically change
+	}
+}
+</script>
+```
 
-`f(x) = e^x` `x_0=1.1`
-
-###Oszilatation
-
-`f(x) = x^3 - 3*x` `x_0 = √0.6`
-
-###Another point
-
-`f(x) = sin(x)` `x_0 = 1.2`
-
-###No Point
-`x^3-2*x+2` `x_0 = 1.5`
-
-###Other Interesting
-
-`f(x) = 0.5*x^3+0.5*x` `x_0=2`
+Like all mathbox primitives `curve` has certain properties, their names directly match the attributes in math tag.
