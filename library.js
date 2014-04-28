@@ -233,6 +233,9 @@
       return JSON.parse(v);
     });
     attr('arrow', 'ngArrow', 'arrow', function(v){
+      return v===true||v==='true';
+    })
+    attr('size', 'ngSize', 'size', function(v){
       return Number(v);
     })
   }

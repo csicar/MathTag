@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>MathTag - Empty</title>
+  <!-- load angular -->
+  <script src="angular.js"></script>
+  <!-- load the library -->
+  <script src="../MathTag.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+  <math-box>
+    <curve>x^2</curve>
+    <curve>x^3</curve>
+    <curve>sin(2*x)</curve>
+  </math-box>
+  <script>
+    var app = angular.module('app', ['mathTag']);
+    app.controller('MainCtrl', function($scope, $timeout){
+      //add
+    })
+  </script>
+</body>
+</html>

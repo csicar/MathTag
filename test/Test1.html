@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="app">
-
 <head>
   <meta charset="utf-8">
-  <title>MathTag</title>
+  <title>MathTag - Test1</title>
   <script src="angular.js"></script>
-
   <script src="../MathTag.js"></script>
 </head>
 <body ng-controller="MainCtrl">
-  <button ng-click="change()">Change!!!!!!!!!!!</button>
   <math-box>
     <curve color="ff00">x^2</curve>
     <curve ng-model="f" ng-color="c" domain="[-10, 10]"></curve>
