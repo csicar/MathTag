@@ -12,9 +12,9 @@
   }
 
   function Attr(scope, elem, attrs, ctrl, mathbox, sel){
-    function attr(name, bind, prop, fn){
+    function attr(name, bind, prop, fn, method){
       var obj = {};
-      var duration = 1000;
+      var method = method || 'animate'
       fn = fn || function(v){return v}
 
       if(mathbox.get(sel)[prop] === undefined){
@@ -26,7 +26,7 @@
         obj[name] = attrs[bind];
         scope.$watch(attrs[bind], function(v){
           obj[name] = fn(v);
-          mathbox.animate(sel, obj, {
+          mathbox[method](sel, obj, {
             duration: duration,
           })
         })
@@ -34,12 +34,12 @@
       //static ngModel: <curve>xxx
       }else if(bind === 'ngModel'){
         obj[name] = fn(elem.text());
-        mathbox.animate(sel, obj, {
+        mathbox[method](sel, obj, {
           duration: duration,
         })
       }else if(attrs[name]){
         obj[name] = fn(attrs[name]);
-        mathbox.animate(sel, obj, {
+        mathbox[method](sel, obj, {
           duration: duration,
         })
       }
@@ -82,10 +82,11 @@
       restrict: 'E',
       transclude: true,
       scope: {},
-      template: '<div class="mathbox" ng-transclude>'+
+      template:
+      '<div class="mathbox" ng-transclude>'+
         '<axis axis="0" line-width="1"></axis>'+
         '<axis axis="1" line-width="1"></axis>'+
-        '</div>',
+      '</div>',
       link: function(scope, elem, attrs){
         mathReady(function(){
           linkMathBox(scope, elem, attrs);
@@ -353,10 +354,7 @@
     attr('zIndex', 'ngZIndex', 'zIndex', attr.num);
     attr('color', 'ngColor', 'color', attr.color);
 
-    attr('axis', 'ngAxis', 'axis', function(v){
-      console.log("x", v)
-      return attr.num(v)
-    });
+    attr('axis', 'ngAxis', 'axis', attr.num, 'set');
     attr('offset', 'ngOffset', 'offset', attr.obj);
     attr('n', 'ngN', 'n', attr.num);
     attr('ticks', 'ngTicks', 'ticks', attr.num);
