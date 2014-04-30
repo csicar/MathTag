@@ -14,12 +14,9 @@
   function Attr(scope, elem, attrs, ctrl, mathbox, sel){
     function attr(name, bind, prop, fn, method){
       var obj = {};
-      var method = method || 'animate'
+      var method = method || 'animate';
+      var duration = 1000;
       fn = fn || function(v){return v}
-
-      if(mathbox.get(sel)[prop] === undefined){
-        duration = 0;
-      }
 
       //data bind: <curve ng-xxx>
       if(scope[attrs[bind]]){
@@ -77,15 +74,13 @@
     }
   }());
 
-  mod.directive('mathBox', function(){
+  mod.directive('mathBox', function($timeout){
     return {
       restrict: 'E',
       transclude: true,
       scope: {},
       template:
       '<div class="mathbox" ng-transclude>'+
-        '<axis axis="0" line-width="1"></axis>'+
-        '<axis axis="1" line-width="1"></axis>'+
       '</div>',
       link: function(scope, elem, attrs){
         mathReady(function(){
@@ -203,14 +198,26 @@
         range: [[-10, 10], [-10, 10]],
         scale: [1, 1],
       })
-      .camera({
-        orbit: 3,
+      .transition(300)
+    if(elem.find('axis').length){
+    }else{
+      mathbox.axis({
+        axis: 0,
+        lineWidth: 1,
+      }).axis({
+        axis: 1,
+        lineWidth: 1,
+      })
+    }
+    if(elem.find('camera').length){
+    }else{
+      mathbox.camera({
+        orbit: 4,
         phi: τ/4,
-        theta: 1,
+        theta: 0,
         //lookAt: [0, 0],
       })
-      .transition(300)
-
+    }
     scope.mathbox = function(){
       return mathbox;
     }
@@ -366,11 +373,11 @@
   function linkCamera(scope, elem, attrs, ctrl, mathbox){
     var id = guid();
     var attr = Attr(scope, elem, attrs, ctrl, mathbox, 'camera');
-    mathbox.camera({
+    /*mathbox.camera({
       orbit: 3,
       phi: τ/4,
       theta: 1,
-    });
+    });*/
 
     attr('orbit', 'ngOrbit', 'orbit', attr.num);
     attr('phi', 'ngPhi', 'phi', attr.num);
