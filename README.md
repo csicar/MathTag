@@ -6,12 +6,24 @@ MathTag is a easy-to-use library that delivers the **mathbox** as a angular dire
 Installation
 ---
 
-Just the `MathTag.js` file in your html. 
+Just include the `MathTag.js` file in your html. 
 
 > **Note** The file includes `mathbox.js`, `mathjs`, `nerdamer` and the library itself
 
 ```html
 <script src="path/to/MathTag.js"></script>
+```
+
+###Using Bower
+
+```bash
+$ bower install mathtag
+```
+
+and in your html file:
+
+```html
+<script src="bower_components/mathtag/MathTag.js"></script>
 ```
 
 Usage
