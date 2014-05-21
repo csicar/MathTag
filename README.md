@@ -1,7 +1,7 @@
 MathTag
 ===
 
-MathTag is a easy-to-use library that delivers the **mathbox** as a angular directtive.
+MathTag is a easy-to-use library that delivers the **mathbox** as a angular directive.
 
 Installation
 ---
