@@ -6,7 +6,7 @@ MathTag is a easy-to-use library that delivers the **mathbox** as a angular dire
 Installation
 ---
 
-Just include the `MathTag.js` file in your html. 
+Just include the [MathTag.js](https://raw.githubusercontent.com/csicar/MathTag/dev/MathTag.js) file in your html. 
 
 > **Note** The file includes `mathbox.js`, `mathjs`, `nerdamer` and the library itself
 
