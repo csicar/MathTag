@@ -29,7 +29,13 @@ and in your html file:
 Usage
 ---
 
-The matchbox element creates a new instance of mathbox.
+Add the `mathbox` module to your app:
+
+```javascript
+var myApp = angular.module('myApp', ['mathTag']);
+```
+
+The mathbox element creates a new instance of mathbox.
 ```html
 <math-box>
     <curve color="ff00">x^2</curve>
